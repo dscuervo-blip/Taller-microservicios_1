@@ -1,0 +1,16 @@
+{
+  "name": "gestor-alquiler-vehiculos",
+  "version": "1.0.0",
+  "description": "Gestor de Alquiler de Vehículos con arquitectura de microservicios (HTML5, CSS3, JavaScript y JSON)",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/iniciar-todo.js",
+    "vehiculos": "node microservices/vehiculos-service/server.js",
+    "clientes": "node microservices/clientes-service/server.js",
+    "frontend": "node frontend/server.js",
+    "test": "node --test microservices/vehiculos-service/tests/vehiculos.test.js microservices/clientes-service/tests/clientes.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

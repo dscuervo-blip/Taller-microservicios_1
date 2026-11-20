@@ -1,0 +1,42 @@
+[
+  {
+    "id": "CLI-0001",
+    "nombreCompleto": "Laura Patricia Gómez Rincón",
+    "identificacion": "1049632587",
+    "telefono": "3104567821",
+    "correo": "laura.gomez@correo.com",
+    "licencia": "LIC-1049632587",
+    "fechaCreacion": "2026-11-01T09:00:00.000Z",
+    "fechaActualizacion": "2026-11-01T09:00:00.000Z"
+  },
+  {
+    "id": "CLI-0002",
+    "nombreCompleto": "Andrés Felipe Martínez Suárez",
+    "identificacion": "1052874123",
+    "telefono": "3157894512",
+    "correo": "andres.martinez@correo.com",
+    "licencia": "LIC-1052874123",
+    "fechaCreacion": "2026-11-01T09:05:00.000Z",
+    "fechaActualizacion": "2026-11-01T09:05:00.000Z"
+  },
+  {
+    "id": "CLI-0003",
+    "nombreCompleto": "Diana Carolina Pérez Ortiz",
+    "identificacion": "40021548",
+    "telefono": "3002145698",
+    "correo": "diana.perez@correo.com",
+    "licencia": "LIC-40021548",
+    "fechaCreacion": "2026-11-01T09:10:00.000Z",
+    "fechaActualizacion": "2026-11-01T09:10:00.000Z"
+  },
+  {
+    "id": "CLI-0004",
+    "nombreCompleto": "Jorge Iván Castro Medina",
+    "identificacion": "7183654",
+    "telefono": "3208741236",
+    "correo": "jorge.castro@correo.com",
+    "licencia": "LIC-7183654",
+    "fechaCreacion": "2026-11-01T09:15:00.000Z",
+    "fechaActualizacion": "2026-11-01T09:15:00.000Z"
+  }
+]

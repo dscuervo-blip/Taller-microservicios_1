@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Página de clientes
+   ========================================================================== */
+
+/* El nombre completo ocupa dos columnas en pantallas anchas */
+.campo--doble {
+  grid-column: span 2;
+}
+
+/* Filtro de la lista y búsqueda por identificación, lado a lado */
+.barra-clientes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--espacio-4);
+  margin-bottom: var(--espacio-4);
+}
+
+.barra-clientes .campo label {
+  font-size: var(--texto-sm);
+  font-weight: 500;
+  color: var(--color-texto-suave);
+}
+
+/* Iniciales del cliente en un círculo, junto al nombre */
+.cliente {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-width: 200px;
+}
+
+.cliente__iniciales {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primario-fondo);
+  color: var(--color-primario);
+  font-family: var(--fuente-condensada);
+  font-weight: 700;
+}
+
+.cliente__nombre {
+  font-weight: 600;
+}
+
+.licencia {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.detalle-cliente__encabezado {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-4);
+  margin-bottom: var(--espacio-5);
+}
+
+.detalle-cliente__encabezado .cliente__iniciales {
+  width: 56px;
+  height: 56px;
+  font-size: var(--texto-xl);
+}
+
+.detalle-cliente__nombre {
+  font-family: var(--fuente-condensada);
+  font-size: var(--texto-xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@media (max-width: 760px) {
+  .campo--doble {
+    grid-column: 1 / -1;
+  }
+
+  .barra-clientes {
+    grid-template-columns: 1fr;
+  }
+}

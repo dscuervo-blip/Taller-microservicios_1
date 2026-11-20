@@ -1,0 +1,21 @@
+# Dependencias (el proyecto no usa ninguna, pero los servicios de la Parte 2 podrían)
+node_modules/
+
+# Datos que se generan al usar la aplicación.
+# Se versionan solo los archivos *.seed.json (datos iniciales de demostración).
+microservices/*/data/*.json
+!microservices/*/data/*.seed.json
+microservices/*/data/*.tmp
+
+# Configuración local de herramientas
+.claude/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Registros
+*.log
+npm-debug.log*

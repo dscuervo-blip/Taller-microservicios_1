@@ -1,0 +1,74 @@
+[
+  {
+    "id": "VEH-0001",
+    "marca": "Chevrolet",
+    "modelo": "Onix",
+    "anio": 2023,
+    "placa": "KLM482",
+    "categoria": "Sedán",
+    "descripcion": "Sedán automático, aire acondicionado, 5 pasajeros.",
+    "estado": "Disponible",
+    "fechaCreacion": "2026-11-01T08:00:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:00:00.000Z"
+  },
+  {
+    "id": "VEH-0002",
+    "marca": "Renault",
+    "modelo": "Duster",
+    "anio": 2022,
+    "placa": "HTR915",
+    "categoria": "SUV",
+    "descripcion": "SUV 4x2 mecánica, ideal para carretera.",
+    "estado": "Alquilado",
+    "fechaCreacion": "2026-11-01T08:05:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:05:00.000Z"
+  },
+  {
+    "id": "VEH-0003",
+    "marca": "Kia",
+    "modelo": "Picanto",
+    "anio": 2024,
+    "placa": "JNP207",
+    "categoria": "Económico",
+    "descripcion": "Citycar de bajo consumo, perfecto para ciudad.",
+    "estado": "Disponible",
+    "fechaCreacion": "2026-11-01T08:10:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:10:00.000Z"
+  },
+  {
+    "id": "VEH-0004",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "anio": 2021,
+    "placa": "GBD630",
+    "categoria": "Camioneta",
+    "descripcion": "Camioneta doble cabina 4x4 diésel.",
+    "estado": "En mantenimiento",
+    "fechaCreacion": "2026-11-01T08:15:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:15:00.000Z"
+  },
+  {
+    "id": "VEH-0005",
+    "marca": "Mazda",
+    "modelo": "CX-30",
+    "anio": 2024,
+    "placa": "LQS118",
+    "categoria": "SUV",
+    "descripcion": "SUV compacta automática con cámara de reversa.",
+    "estado": "Disponible",
+    "fechaCreacion": "2026-11-01T08:20:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:20:00.000Z"
+  },
+  {
+    "id": "VEH-0006",
+    "marca": "Renault",
+    "modelo": "Kangoo",
+    "anio": 2020,
+    "placa": "FWX774",
+    "categoria": "Van",
+    "descripcion": "Van de carga y pasajeros, 7 puestos.",
+    "estado": "Disponible",
+    "fechaCreacion": "2026-11-01T08:25:00.000Z",
+    "fechaActualizacion": "2026-11-01T08:25:00.000Z"
+  }
+]

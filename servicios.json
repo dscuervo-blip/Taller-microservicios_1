@@ -1,0 +1,53 @@
+{
+  "descripcion": "Registro de procesos que inicia 'npm start'. Para agregar un microservicio de la Parte 2, cambie 'implementado' a true cuando exista su server.js.",
+  "servicios": [
+    {
+      "clave": "vehiculos",
+      "nombre": "vehiculos-service",
+      "puerto": 3001,
+      "archivo": "microservices/vehiculos-service/server.js",
+      "responsable": "Parte 1",
+      "implementado": true
+    },
+    {
+      "clave": "clientes",
+      "nombre": "clientes-service",
+      "puerto": 3002,
+      "archivo": "microservices/clientes-service/server.js",
+      "responsable": "Parte 1",
+      "implementado": true
+    },
+    {
+      "clave": "reservas",
+      "nombre": "reservas-service",
+      "puerto": 3003,
+      "archivo": "microservices/reservas-service/server.js",
+      "responsable": "Parte 2",
+      "implementado": false
+    },
+    {
+      "clave": "alquileres",
+      "nombre": "alquileres-service",
+      "puerto": 3004,
+      "archivo": "microservices/alquileres-service/server.js",
+      "responsable": "Parte 2",
+      "implementado": false
+    },
+    {
+      "clave": "reportes",
+      "nombre": "reportes-service",
+      "puerto": 3005,
+      "archivo": "microservices/reportes-service/server.js",
+      "responsable": "Parte 2",
+      "implementado": false
+    },
+    {
+      "clave": "frontend",
+      "nombre": "frontend",
+      "puerto": 3000,
+      "archivo": "frontend/server.js",
+      "responsable": "Parte 1",
+      "implementado": true
+    }
+  ]
+}

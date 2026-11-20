@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Página de vehículos
+   ========================================================================== */
+
+/* La placa se escribe en mayúsculas mientras se teclea */
+.control--placa {
+  font-family: var(--fuente-condensada);
+  font-size: var(--texto-lg);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.control--placa::placeholder {
+  letter-spacing: 0.08em;
+}
+
+/* La búsqueda libre ocupa más espacio en la barra de filtros */
+.campo--busqueda {
+  grid-column: span 2;
+}
+
+.vehiculo-nombre {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* La descripción se muestra en una sola línea; completa en el detalle */
+.vehiculo-descripcion {
+  max-width: 26ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabla .placa + .tabla__codigo {
+  margin-top: 2px;
+}
+
+/* Cabecera del detalle: la placa grande es el centro de atención */
+.detalle-vehiculo__encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  margin-bottom: var(--espacio-5);
+}
+
+.detalle-vehiculo__nombre {
+  margin-bottom: var(--espacio-4);
+  font-family: var(--fuente-condensada);
+  font-size: var(--texto-xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.detalle-vehiculo__nombre small {
+  display: block;
+  font-family: var(--fuente-base);
+  font-size: var(--texto-sm);
+  font-weight: 400;
+  color: var(--color-texto-suave);
+}
+
+.detalle-estado {
+  align-items: center;
+}
+
+.detalle-estado label {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.detalle-estado .control {
+  width: auto;
+  min-width: 180px;
+}
+
+@media (max-width: 640px) {
+  .campo--busqueda {
+    grid-column: 1 / -1;
+  }
+
+  .detalle-estado .control,
+  .detalle-estado .boton {
+    flex: 1 1 100%;
+  }
+}

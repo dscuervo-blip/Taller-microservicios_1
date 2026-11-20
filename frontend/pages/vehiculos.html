@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Administración de la flota de vehículos">
+  <title>Vehículos | Gestor de Alquiler de Vehículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/vehiculos.css">
+  <script type="module" src="../js/vehiculos.js"></script>
+</head>
+<body data-pagina="vehiculos" data-raiz="../">
+  <div class="app">
+    <aside class="barra-lateral" id="barra-lateral" aria-label="Navegación">
+      <a class="marca" href="../index.html">
+        <span class="marca__logo"><svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#volante"></use></svg></span>
+        <span class="marca__texto">Gestor de Alquiler<small>de Vehículos</small></span>
+      </a>
+      <nav class="menu" id="menu-principal" aria-label="Menú principal"></nav>
+      <p class="barra-lateral__pie">Panel de administración</p>
+    </aside>
+    <div class="fondo-menu" id="fondo-menu" hidden></div>
+
+    <div class="contenido">
+      <header class="barra-superior">
+        <button type="button" class="boton-icono boton-menu" id="boton-menu" aria-label="Abrir menú" aria-controls="barra-lateral" aria-expanded="false">
+          <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#menu"></use></svg>
+        </button>
+        <div class="barra-superior__titulo">
+          <h1>Vehículos</h1>
+          <p>Registra la flota, actualiza su estado y consulta cada vehículo.</p>
+        </div>
+        <div class="estado-servicios" id="estado-servicios" aria-live="polite"></div>
+      </header>
+
+      <main class="pagina">
+        <!-- Formulario de registro / edición -->
+        <section class="tarjeta" id="seccion-formulario" aria-labelledby="titulo-formulario">
+          <div class="tarjeta__cabecera">
+            <h2 id="titulo-formulario">Registrar vehículo</h2>
+            <p class="tarjeta__ayuda" id="ayuda-formulario">Los campos marcados con <span class="campo__obligatorio">*</span> son obligatorios.</p>
+          </div>
+
+          <form id="formulario-vehiculo" class="formulario" novalidate>
+            <div class="formulario__rejilla">
+              <div class="campo">
+                <label for="marca">Marca <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="marca" name="marca" type="text" list="lista-marcas" required minlength="2" maxlength="40" autocomplete="off" data-etiqueta="La marca" placeholder="Ej. Chevrolet">
+                <datalist id="lista-marcas"></datalist>
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="modelo">Modelo <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="modelo" name="modelo" type="text" required maxlength="40" autocomplete="off" data-etiqueta="El modelo" placeholder="Ej. Onix">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="anio">Año <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="anio" name="anio" type="number" required min="1980" max="2027" step="1" inputmode="numeric" data-etiqueta="El año" placeholder="Ej. 2024">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="placa">Placa <span class="campo__obligatorio">*</span></label>
+                <input class="control control--placa" id="placa" name="placa" type="text" required pattern="[A-Za-z0-9 \-]{5,9}" maxlength="9" autocomplete="off" data-etiqueta="La placa" data-mensaje-patron="La placa debe tener entre 5 y 8 letras o números, por ejemplo ABC123." placeholder="ABC123">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="categoria">Categoría <span class="campo__obligatorio">*</span></label>
+                <select class="control" id="categoria" name="categoria" required data-etiqueta="La categoría">
+                  <option value="">Seleccione una categoría</option>
+                </select>
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="estado">Estado <span class="campo__obligatorio">*</span></label>
+                <select class="control" id="estado" name="estado" required data-etiqueta="El estado">
+                  <option value="Disponible">Disponible</option>
+                </select>
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo campo--completo">
+                <label for="descripcion">Descripción <span class="campo__obligatorio">*</span></label>
+                <textarea class="control" id="descripcion" name="descripcion" required minlength="5" maxlength="300" data-etiqueta="La descripción" placeholder="Transmisión, número de puestos, equipamiento..."></textarea>
+                <p class="campo__error"></p>
+              </div>
+            </div>
+
+            <div class="formulario__acciones">
+              <button type="button" class="boton boton--secundario" id="boton-cancelar" hidden>Cancelar edición</button>
+              <button type="reset" class="boton boton--secundario" id="boton-limpiar">Limpiar formulario</button>
+              <button type="submit" class="boton boton--primario" id="boton-guardar">Registrar vehículo</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Listado, filtros y clasificación -->
+        <section class="tarjeta" aria-labelledby="titulo-listado">
+          <div class="tarjeta__cabecera">
+            <h2 id="titulo-listado">Flota registrada</h2>
+            <p class="tarjeta__ayuda" id="contador-vehiculos" aria-live="polite"></p>
+            <form class="buscador tarjeta__extremo" id="buscador-id" role="search" novalidate>
+              <label class="visualmente-oculto" for="buscar-id">Buscar vehículo por ID</label>
+              <input class="control" id="buscar-id" name="id" type="text" placeholder="ID, p. ej. VEH-0001" autocomplete="off">
+              <button type="submit" class="boton boton--secundario">
+                <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#buscar"></use></svg>
+                Buscar por ID
+              </button>
+            </form>
+          </div>
+
+          <form class="barra-filtros" id="filtros-vehiculos" novalidate>
+            <div class="campo campo--busqueda">
+              <label for="filtro-buscar">Buscar</label>
+              <div class="control-con-icono">
+                <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#buscar"></use></svg>
+                <input class="control" id="filtro-buscar" name="buscar" type="search" placeholder="Placa, marca, modelo..." autocomplete="off">
+              </div>
+            </div>
+            <div class="campo">
+              <label for="filtro-marca">Marca</label>
+              <select class="control" id="filtro-marca" name="marca"><option value="">Todas</option></select>
+            </div>
+            <div class="campo">
+              <label for="filtro-modelo">Modelo</label>
+              <select class="control" id="filtro-modelo" name="modelo"><option value="">Todos</option></select>
+            </div>
+            <div class="campo">
+              <label for="filtro-anio">Año</label>
+              <select class="control" id="filtro-anio" name="anio"><option value="">Todos</option></select>
+            </div>
+            <div class="campo">
+              <label for="filtro-categoria">Categoría</label>
+              <select class="control" id="filtro-categoria" name="categoria"><option value="">Todas</option></select>
+            </div>
+            <div class="campo">
+              <label for="filtro-estado">Estado</label>
+              <select class="control" id="filtro-estado" name="estado"><option value="">Todos</option></select>
+            </div>
+            <div class="campo">
+              <label for="filtro-orden">Clasificar por</label>
+              <select class="control" id="filtro-orden" name="ordenarPor">
+                <option value="id">Fecha de registro</option>
+                <option value="marca">Marca</option>
+                <option value="modelo">Modelo</option>
+                <option value="anio">Año</option>
+                <option value="categoria">Categoría</option>
+                <option value="estado">Estado</option>
+                <option value="placa">Placa</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="filtro-sentido">Orden</label>
+              <select class="control" id="filtro-sentido" name="orden">
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+              </select>
+            </div>
+            <button type="reset" class="boton boton--secundario">Quitar filtros</button>
+          </form>
+
+          <div class="tabla-contenedor">
+            <table class="tabla" id="tabla-vehiculos">
+              <caption class="visualmente-oculto">Vehículos registrados</caption>
+              <thead>
+                <tr>
+                  <th scope="col" data-orden="placa"><button type="button" class="boton-orden">Placa / ID</button></th>
+                  <th scope="col" data-orden="marca"><button type="button" class="boton-orden">Vehículo</button></th>
+                  <th scope="col" data-orden="anio"><button type="button" class="boton-orden">Año</button></th>
+                  <th scope="col" data-orden="categoria"><button type="button" class="boton-orden">Categoría</button></th>
+                  <th scope="col" data-orden="estado"><button type="button" class="boton-orden">Estado</button></th>
+                  <th scope="col" class="tabla__acciones"><span class="visualmente-oculto">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-vehiculos"></tbody>
+            </table>
+            <div class="estado-vacio" id="vacio-vehiculos" hidden></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Detalle de un vehículo -->
+  <dialog class="dialogo" id="dialogo-vehiculo" aria-labelledby="detalle-titulo">
+    <div class="dialogo__cabecera">
+      <h2 id="detalle-titulo">Detalle del vehículo</h2>
+      <button type="button" class="boton-icono" data-cerrar aria-label="Cerrar">
+        <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#cerrar"></use></svg>
+      </button>
+    </div>
+    <div class="dialogo__cuerpo" id="detalle-cuerpo"></div>
+    <form class="dialogo__pie detalle-estado" id="formulario-estado" novalidate>
+      <label for="detalle-nuevo-estado">Cambiar estado</label>
+      <select class="control" id="detalle-nuevo-estado" name="estado"></select>
+      <button type="submit" class="boton boton--primario" id="boton-cambiar-estado">Actualizar estado</button>
+    </form>
+  </dialog>
+
+  <div class="notificaciones" id="notificaciones"></div>
+</body>
+</html>

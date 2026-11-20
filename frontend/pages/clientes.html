@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Administración de clientes">
+  <title>Clientes | Gestor de Alquiler de Vehículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/clientes.css">
+  <script type="module" src="../js/clientes.js"></script>
+</head>
+<body data-pagina="clientes" data-raiz="../">
+  <div class="app">
+    <aside class="barra-lateral" id="barra-lateral" aria-label="Navegación">
+      <a class="marca" href="../index.html">
+        <span class="marca__logo"><svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#volante"></use></svg></span>
+        <span class="marca__texto">Gestor de Alquiler<small>de Vehículos</small></span>
+      </a>
+      <nav class="menu" id="menu-principal" aria-label="Menú principal"></nav>
+      <p class="barra-lateral__pie">Panel de administración</p>
+    </aside>
+    <div class="fondo-menu" id="fondo-menu" hidden></div>
+
+    <div class="contenido">
+      <header class="barra-superior">
+        <button type="button" class="boton-icono boton-menu" id="boton-menu" aria-label="Abrir menú" aria-controls="barra-lateral" aria-expanded="false">
+          <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#menu"></use></svg>
+        </button>
+        <div class="barra-superior__titulo">
+          <h1>Clientes</h1>
+          <p>Registra a quienes alquilan vehículos y mantén sus datos al día.</p>
+        </div>
+        <div class="estado-servicios" id="estado-servicios" aria-live="polite"></div>
+      </header>
+
+      <main class="pagina">
+        <!-- Formulario de registro / edición -->
+        <section class="tarjeta" id="seccion-formulario" aria-labelledby="titulo-formulario">
+          <div class="tarjeta__cabecera">
+            <h2 id="titulo-formulario">Registrar cliente</h2>
+            <p class="tarjeta__ayuda">Todos los campos son obligatorios.</p>
+          </div>
+
+          <form id="formulario-cliente" class="formulario" novalidate>
+            <div class="formulario__rejilla">
+              <div class="campo campo--doble">
+                <label for="nombreCompleto">Nombre completo <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="nombreCompleto" name="nombreCompleto" type="text" required minlength="3" maxlength="80" pattern="[^0-9]+" autocomplete="off" data-etiqueta="El nombre completo" data-mensaje-patron="El nombre no debe contener números." placeholder="Nombres y apellidos">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="identificacion">Número de identificación <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="identificacion" name="identificacion" type="text" required pattern="[A-Za-z0-9.\- ]{5,20}" maxlength="20" autocomplete="off" data-etiqueta="El número de identificación" data-mensaje-patron="Use entre 5 y 15 letras o números." placeholder="Cédula o pasaporte">
+                <p class="campo__ayuda">Puede escribirlo con o sin puntos.</p>
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="telefono">Teléfono <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="telefono" name="telefono" type="tel" required pattern="\+?[0-9 \(\)\-]{7,20}" maxlength="20" autocomplete="off" data-etiqueta="El teléfono" data-mensaje-patron="Escriba entre 7 y 15 dígitos." placeholder="Ej. 3101234567">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="correo">Correo electrónico <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="correo" name="correo" type="email" required maxlength="100" autocomplete="off" data-etiqueta="El correo electrónico" placeholder="nombre@correo.com">
+                <p class="campo__error"></p>
+              </div>
+              <div class="campo">
+                <label for="licencia">Número de licencia de conducción <span class="campo__obligatorio">*</span></label>
+                <input class="control" id="licencia" name="licencia" type="text" required pattern="[A-Za-z0-9\-]{5,20}" maxlength="20" autocomplete="off" data-etiqueta="El número de licencia" data-mensaje-patron="Use entre 5 y 20 letras, números o guiones." placeholder="Ej. LIC-1049632587">
+                <p class="campo__error"></p>
+              </div>
+            </div>
+
+            <div class="formulario__acciones">
+              <button type="button" class="boton boton--secundario" id="boton-cancelar" hidden>Cancelar edición</button>
+              <button type="reset" class="boton boton--secundario">Limpiar formulario</button>
+              <button type="submit" class="boton boton--primario" id="boton-guardar">Registrar cliente</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Listado y búsqueda -->
+        <section class="tarjeta" aria-labelledby="titulo-listado">
+          <div class="tarjeta__cabecera">
+            <h2 id="titulo-listado">Clientes registrados</h2>
+            <p class="tarjeta__ayuda" id="contador-clientes" aria-live="polite"></p>
+          </div>
+
+          <div class="barra-clientes">
+            <form class="campo" id="filtros-clientes" role="search" novalidate>
+              <label for="filtro-buscar">Filtrar la lista</label>
+              <div class="control-con-icono">
+                <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#buscar"></use></svg>
+                <input class="control" id="filtro-buscar" name="buscar" type="search" placeholder="Nombre, correo, teléfono..." autocomplete="off">
+              </div>
+            </form>
+            <form class="campo" id="buscador-identificacion" role="search" novalidate>
+              <label for="buscar-identificacion">Buscar por número de identificación</label>
+              <div class="buscador">
+                <input class="control" id="buscar-identificacion" name="identificacion" type="text" placeholder="Ej. 1049632587" autocomplete="off">
+                <button type="submit" class="boton boton--secundario">
+                  <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#buscar"></use></svg>
+                  Buscar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="tabla-contenedor">
+            <table class="tabla" id="tabla-clientes">
+              <caption class="visualmente-oculto">Clientes registrados</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Identificación</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Correo electrónico</th>
+                  <th scope="col">Licencia</th>
+                  <th scope="col">ID</th>
+                  <th scope="col" class="tabla__acciones"><span class="visualmente-oculto">Acciones</span></th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-clientes"></tbody>
+            </table>
+            <div class="estado-vacio" id="vacio-clientes" hidden></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Detalle de un cliente -->
+  <dialog class="dialogo" id="dialogo-cliente" aria-labelledby="detalle-titulo">
+    <div class="dialogo__cabecera">
+      <h2 id="detalle-titulo">Detalle del cliente</h2>
+      <button type="button" class="boton-icono" data-cerrar aria-label="Cerrar">
+        <svg class="icono" aria-hidden="true"><use href="../assets/icons.svg#cerrar"></use></svg>
+      </button>
+    </div>
+    <div class="dialogo__cuerpo" id="detalle-cuerpo"></div>
+    <div class="dialogo__pie">
+      <button type="button" class="boton boton--secundario" data-cerrar>Cerrar</button>
+      <button type="button" class="boton boton--primario" id="detalle-editar">Editar cliente</button>
+    </div>
+  </dialog>
+
+  <div class="notificaciones" id="notificaciones"></div>
+</body>
+</html>

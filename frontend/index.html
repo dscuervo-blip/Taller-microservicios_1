@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel principal del gestor de alquiler de vehículos">
+  <title>Panel principal | Gestor de Alquiler de Vehículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body data-pagina="dashboard" data-raiz="">
+  <div class="app">
+    <aside class="barra-lateral" id="barra-lateral" aria-label="Navegación">
+      <a class="marca" href="index.html">
+        <span class="marca__logo"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#volante"></use></svg></span>
+        <span class="marca__texto">Gestor de Alquiler<small>de Vehículos</small></span>
+      </a>
+      <nav class="menu" id="menu-principal" aria-label="Menú principal"></nav>
+      <p class="barra-lateral__pie">Panel de administración</p>
+    </aside>
+    <div class="fondo-menu" id="fondo-menu" hidden></div>
+
+    <div class="contenido">
+      <header class="barra-superior">
+        <button type="button" class="boton-icono boton-menu" id="boton-menu" aria-label="Abrir menú" aria-controls="barra-lateral" aria-expanded="false">
+          <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg>
+        </button>
+        <div class="barra-superior__titulo">
+          <h1>Panel principal</h1>
+          <p id="fecha-actual">Estado de la flota y de los clientes</p>
+        </div>
+        <div class="estado-servicios" id="estado-servicios" aria-live="polite"></div>
+      </header>
+
+      <main class="pagina">
+        <!-- Estadísticas: se calculan con los datos de los microservicios -->
+        <section aria-labelledby="titulo-estadisticas">
+          <h2 class="visualmente-oculto" id="titulo-estadisticas">Estadísticas</h2>
+          <ul class="estadisticas">
+            <li class="estadistica estadistica--total">
+              <span class="estadistica__icono"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#auto"></use></svg></span>
+              <span class="estadistica__valor" id="total-vehiculos">–</span>
+              <span class="estadistica__etiqueta">Vehículos registrados</span>
+            </li>
+            <li class="estadistica estadistica--disponible">
+              <span class="estadistica__icono"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span>
+              <span class="estadistica__valor" id="total-disponibles">–</span>
+              <span class="estadistica__etiqueta">Disponibles</span>
+            </li>
+            <li class="estadistica estadistica--alquilado">
+              <span class="estadistica__icono"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#llave"></use></svg></span>
+              <span class="estadistica__valor" id="total-alquilados">–</span>
+              <span class="estadistica__etiqueta">Alquilados</span>
+            </li>
+            <li class="estadistica estadistica--mantenimiento">
+              <span class="estadistica__icono"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#herramienta"></use></svg></span>
+              <span class="estadistica__valor" id="total-mantenimiento">–</span>
+              <span class="estadistica__etiqueta">En mantenimiento</span>
+            </li>
+            <li class="estadistica estadistica--clientes">
+              <span class="estadistica__icono"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#usuarios"></use></svg></span>
+              <span class="estadistica__valor" id="total-clientes">–</span>
+              <span class="estadistica__etiqueta">Clientes registrados</span>
+            </li>
+          </ul>
+        </section>
+
+        <div class="panel-rejilla">
+          <!-- Composición de la flota por estado -->
+          <section class="tarjeta panel-flota" aria-labelledby="titulo-flota">
+            <div class="tarjeta__cabecera">
+              <h2 id="titulo-flota">Ocupación de la flota</h2>
+              <p class="tarjeta__ayuda" id="resumen-ocupacion"></p>
+              <button type="button" class="boton boton--secundario tarjeta__extremo" id="boton-actualizar">
+                <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#refrescar"></use></svg>
+                Actualizar
+              </button>
+            </div>
+            <div class="barra-flota" id="barra-flota" role="img" aria-label="Distribución de vehículos por estado"></div>
+            <ul class="leyenda-flota" id="leyenda-flota"></ul>
+          </section>
+
+          <!-- Estado de los microservicios -->
+          <section class="tarjeta panel-servicios" aria-labelledby="titulo-servicios">
+            <div class="tarjeta__cabecera">
+              <h2 id="titulo-servicios">Microservicios</h2>
+            </div>
+            <ul class="lista-servicios" id="lista-servicios"></ul>
+          </section>
+
+          <!-- Distribución por categoría -->
+          <section class="tarjeta panel-categorias" aria-labelledby="titulo-categorias">
+            <div class="tarjeta__cabecera">
+              <h2 id="titulo-categorias">Vehículos por categoría</h2>
+            </div>
+            <ul class="lista-categorias" id="lista-categorias"></ul>
+          </section>
+
+          <!-- Últimos registros -->
+          <section class="tarjeta panel-recientes" aria-labelledby="titulo-recientes">
+            <div class="tarjeta__cabecera">
+              <h2 id="titulo-recientes">Registrados recientemente</h2>
+              <a class="tarjeta__extremo" href="pages/vehiculos.html">Ver toda la flota</a>
+            </div>
+            <div class="tabla-contenedor">
+              <table class="tabla">
+                <caption class="visualmente-oculto">Últimos vehículos registrados</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Vehículo</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpo-recientes"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="notificaciones" id="notificaciones"></div>
+</body>
+</html>

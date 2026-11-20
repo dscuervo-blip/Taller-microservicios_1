@@ -1,0 +1,14 @@
+{
+  "name": "clientes-service",
+  "version": "1.0.0",
+  "description": "Microservicio de clientes del Gestor de Alquiler de Vehículos",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/clientes.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

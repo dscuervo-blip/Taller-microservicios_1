@@ -95,7 +95,7 @@ servicio nunca se mezclan.
 ## 5. Estructura de carpetas
 
 ```
-Taller-microservicios/
+Taller-microservicios_1/
 ├── package.json              # scripts: start, test, vehiculos, clientes, frontend
 ├── servicios.json            # qué procesos inicia "npm start" (y sus puertos)
 ├── scripts/iniciar-todo.js   # inicia todos los servicios implementados
@@ -143,8 +143,8 @@ Taller-microservicios/
 Requisito: **Node.js 18 o superior** (`node --version`).
 
 ```bash
-git clone https://github.com/dscuervo-blip/Taller-microservicios.git
-cd Taller-microservicios
+git clone https://github.com/dscuervo-blip/Taller-microservicios_1.git
+cd Taller-microservicios_1
 ```
 
 No hay paquetes que instalar (`npm install` no es necesario).
@@ -177,7 +177,7 @@ Se detienen con `Ctrl + C`.
 ## 8. Abrir la aplicación
 
 - Con el servidor del frontend: **http://localhost:3000**
-- O con Apache de XAMPP (el proyecto está en `htdocs`): **http://localhost/Taller-microservicios/frontend/**
+- O con Apache de XAMPP (el proyecto está en `htdocs`): **http://localhost/Taller-microservicios_1/frontend/**
   (los microservicios deben estar ejecutándose igualmente).
 
 La barra superior muestra en verde los servicios que responden. Si uno está apagado, la página

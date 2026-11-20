@@ -6,7 +6,7 @@
  * Puerto configurable con la variable de entorno FRONTEND_PORT.
  *
  * También se puede abrir con Apache de XAMPP:
- *   http://localhost/Taller-microservicios/frontend/
+ *   http://localhost/Taller-microservicios_1/frontend/
  */
 const http = require('http');
 const fs = require('fs');

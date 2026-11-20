@@ -177,7 +177,8 @@ Se detienen con `Ctrl + C`.
 ## 8. Abrir la aplicación
 
 - Con el servidor del frontend: **http://localhost:3000**
-- O con Apache de XAMPP (el proyecto está en `htdocs`): **http://localhost/Taller-microservicios_1/frontend/**
+- O con Apache de XAMPP (el proyecto está en `htdocs`): **http://localhost/Taller-microservicios_1/**
+  (el `index.html` de la raíz redirige a `frontend/`)
   (los microservicios deben estar ejecutándose igualmente).
 
 La barra superior muestra en verde los servicios que responden. Si uno está apagado, la página
